@@ -41,5 +41,7 @@ public void keyPressed() {
     spacey.plusY(-5);
   } else if (key =='s') {
     spacey.plusY(5);
+  } else if (key == 'h') {
+    spacey.hyperspace();
   }
 }
