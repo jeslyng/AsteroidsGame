@@ -36,7 +36,6 @@ public void draw()
   }
   if (t>100)
     t = 0;
-  System.out.println(rocks.size());
 }
 public void keyPressed() {
   if (key == 'e') {
