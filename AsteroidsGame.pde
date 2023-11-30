@@ -12,7 +12,7 @@ public void setup()
     bubbles[i] = new Star();
   }
   for (int i = 0; i<10; i++) {
-    rocks.add(i, new Asteroid());
+    rocks.add(new Asteroid());
   }
   smooth();
 }
