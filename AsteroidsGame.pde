@@ -22,7 +22,6 @@ public void draw()
   noStroke();
   spacey.move();
   spacey.show();
-  translate(200, 200);
   for (int i = 0; i<bubbles.length; i++) {
     bubbles[i].move();
     bubbles[i].show();
@@ -31,7 +30,7 @@ public void draw()
     rocks.get(i).move();
     rocks.get(i).show();
     double d = dist(spacey.getX(), spacey.getY(), rocks.get(i).getX(), rocks.get(i).getY());
-    if (d<10) {
+    if (d<15) {
       rocks.remove(i);
     }
   }
