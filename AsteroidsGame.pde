@@ -1,6 +1,7 @@
 //your variable declarations here
 Star[] bubbles = new Star[100];
 Spaceship spacey = new Spaceship();
+ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
 int t = 0;
 public void setup() 
 {
@@ -9,6 +10,9 @@ public void setup()
   noStroke();
   for (int i = 0; i<bubbles.length; i++) {
     bubbles[i] = new Star();
+  }
+  for (int i = 0; i<10; i++) {
+    rocks.add(i, new Asteroid());
   }
   smooth();
 }
@@ -23,8 +27,17 @@ public void draw()
     bubbles[i].move();
     bubbles[i].show();
   }
+  for (int i = 0; i<rocks.size(); i++) {
+    rocks.get(i).move();
+    rocks.get(i).show();
+    double d = dist(spacey.getX(), spacey.getY(), rocks.get(i).getX(), rocks.get(i).getY());
+    if (d<10) {
+      rocks.remove(i);
+    }
+  }
   if (t>100)
     t = 0;
+  System.out.println(rocks.size());
 }
 public void keyPressed() {
   if (key == 'e') {
