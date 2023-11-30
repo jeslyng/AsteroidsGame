@@ -3,7 +3,7 @@ class Star //note that this class does NOT extend Floater
   private double myX, myY, mySpeed, myAngle;
   private int myColor;
   public Star() {
-    myX=myY=0;
+    myX=myY=200;
     myAngle = (double)(Math.random()*6.28);
     myColor = color((int)(Math.random()*100)+156, (int)(Math.random()*100)+156, 256, 150);
     mySpeed = (double)(Math.random()*10);
