@@ -2,6 +2,7 @@
 Star[] bubbles = new Star[100];
 Spaceship spacey = new Spaceship();
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
+ArrayList<Bullet> balls = new ArrayList<Bullet>();
 int t = 0;
 public void setup() 
 {
@@ -12,7 +13,7 @@ public void setup()
     bubbles[i] = new Star();
   }
   for (int i = 0; i<10; i++) {
-    rocks.add(new Asteroid());
+    rocks.add(i, new Asteroid());
   }
   smooth();
 }
@@ -26,6 +27,10 @@ public void draw()
     bubbles[i].move();
     bubbles[i].show();
   }
+  for (int i = 0; i<balls.size(); i++) {
+    balls.get(i).move();
+    balls.get(i).show();
+  }
   for (int i = 0; i<rocks.size(); i++) {
     rocks.get(i).move();
     rocks.get(i).show();
@@ -33,9 +38,23 @@ public void draw()
     if (d<15) {
       rocks.remove(i);
     }
+    for (int j = 0; j<balls.size(); j++) {
+      double f = dist(balls.get(j).getX(), balls.get(j).getY(), rocks.get(i).getX(), rocks.get(i).getY());
+      if (f<10) {
+        rocks.remove(i);
+        balls.remove(j);
+        break;
+      }
+    }
   }
   if (t>100)
     t = 0;
+  if (rocks.size()==0) {
+    noLoop();
+    background(0);
+    stroke(0);
+    text("You win!", 180, 200);
+  }
 }
 public void keyPressed() {
   if (key == 'e') {
@@ -54,5 +73,7 @@ public void keyPressed() {
     spacey.plusY(5);
   } else if (key == 'h') {
     spacey.hyperspace();
+  } else if (key == ' ') {
+    balls.add(new Bullet(spacey));
   }
 }
